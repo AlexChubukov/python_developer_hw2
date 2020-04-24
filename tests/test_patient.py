@@ -8,6 +8,7 @@ import pytest
 from homework.config import GOOD_LOG_FILE, ERROR_LOG_FILE, CSV_PATH, PHONE_FORMAT, PASSPORT_TYPE, PASSPORT_FORMAT, \
     INTERNATIONAL_PASSPORT_FORMAT, INTERNATIONAL_PASSPORT_TYPE, DRIVER_LICENSE_TYPE, DRIVER_LICENSE_FORMAT
 from homework.patient import Patient
+from homework import My_logger
 from tests.constants import GOOD_PARAMS, OTHER_GOOD_PARAMS, WRONG_PARAMS, PATIENT_FIELDS
 
 
@@ -39,6 +40,8 @@ def setup():
 
 def teardown():
     for file in [GOOD_LOG_FILE, ERROR_LOG_FILE, CSV_PATH]:
+        My_logger.handler_access.close()
+        My_logger.handler_error.close()
         os.remove(file)
 
 
